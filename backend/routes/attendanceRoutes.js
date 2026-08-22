@@ -1,3 +1,7 @@
 const router = require('express').Router();
-router.get('/', (req, res) => res.json({ message: 'attendance routes placeholder' }));
+
+router.get('/', (req, res) => {
+  res.json({ message: 'Attendance routes coming soon' });
+});
+
 module.exports = router;

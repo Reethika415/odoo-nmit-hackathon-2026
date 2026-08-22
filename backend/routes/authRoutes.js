@@ -1,3 +1,8 @@
 const router = require('express').Router();
-router.get('/', (req, res) => res.json({ message: 'auth routes placeholder' }));
+
+const { signup, signin } = require('../controllers/authController');
+
+router.post('/signup', signup);
+router.post('/signin', signin);
+
 module.exports = router;
