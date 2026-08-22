@@ -1,27 +1,31 @@
 const User = require('../models/User');
 
 exports.getMyPayroll = async (req, res) => {
-  const user = await User.findById(req.user.id)
-    .select('name employeeId salary department jobTitle');
+  try {
+    const user = await User.findById(req.user.id)
+      .select('name employeeId salary department jobTitle');
 
-  res.json({
-    ...user.toObject(),
-    jobTitle: user.jobTitle || 'Software Engineer',
-    department: user.department || 'Engineering',
-    salary: user.salary || 50000
-  });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({
+      name: user.name,
+      employeeId: user.employeeId,
+      jobTitle: user.jobTitle || 'Software Engineer',
+      department: user.department || 'Engineering',
+      salary: user.salary || 50000
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 };
 
 exports.getAllPayroll = async (req, res) => {
   const users = await User.find()
     .select('name employeeId salary department jobTitle');
 
-  res.json(users.map(user => ({
-    ...user.toObject(),
-    jobTitle: user.jobTitle || 'Software Engineer',
-    department: user.department || 'Engineering',
-    salary: user.salary || 50000
-  })));
+  res.json(users);
 };
 
 exports.updateSalary = async (req, res) => {
