@@ -6,7 +6,7 @@ function Payroll() {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/payroll/me', {
+    axios.get('http://localhost:5001/api/payroll/me', {
       headers: { Authorization: `Bearer ${token}` },
     }).then((res) => setData(res.data));
   }, []);
@@ -21,5 +21,4 @@ function Payroll() {
     </div>
   );
 }
-
 export default Payroll;
