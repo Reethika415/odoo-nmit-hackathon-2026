@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
-  res.json({ message: 'Attendance routes coming soon' });
+  res.json({ message: 'Leave routes coming soon' });
 });
 
 module.exports = router;
