@@ -10,8 +10,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/auth', require('./routes/authRoutes.js/index.js'));
+app.use('/api/auth', require('./routes/authRoutes.js'));
 app.use('/api/attendance', require('./routes/attendanceRoutes'));
+app.use('/api/profile', require('./routes/profileRoutes'));
 app.use('/api/leave', require('./routes/leaveRoutes.js'));
 app.use('/api/payroll', require('./routes/payrollRoutes'));
 
